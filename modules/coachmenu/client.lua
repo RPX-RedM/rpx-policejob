@@ -1,4 +1,4 @@
-PlayerCoachID = nil
+local playerCoachId = nil
 local PromptTimeout = GetGameTimer() - 1000
 local hasPermission = false
 local PromptSet = false
@@ -25,10 +25,10 @@ lib.registerContext({
             description = 'Spawn an armored stagecoach. If you have one out already, it will be despawned.',
             icon = 'horse',
             onSelect = function()
-                if PlayerCoachID then
-                    if DoesEntityExist(PlayerCoachID) then
-                        SetEntityAsMissionEntity(PlayerCoachID, true, true)
-                        DeleteEntity(PlayerCoachID)
+                if playerCoachId then
+                    if DoesEntityExist(playerCoachId) then
+                        SetEntityAsMissionEntity(playerCoachId, true, true)
+                        DeleteEntity(playerCoachId)
                         Wait(200)
                     end
                 end
@@ -39,8 +39,8 @@ lib.registerContext({
                     Wait(20)
                 end
                 if not IsPositionOccupied(Position.x, Position.y, Position.z, 2.0, false, true, true, false, false, 0, false) then
-                    PlayerCoachID = CreateVehicle(model, Position.x,Position.y,Position.z, Position.w, true, true, false)
-                    SetEntityAsMissionEntity(PlayerCoachID, true, true)
+                    playerCoachId = CreateVehicle(model, Position.x,Position.y,Position.z, Position.w, true, true, false)
+                    SetEntityAsMissionEntity(playerCoachId, true, true)
                 end
                 SetModelAsNoLongerNeeded(model)
             end,
@@ -50,10 +50,10 @@ lib.registerContext({
             description = 'Despawn your current stagecoach.',
             icon = 'trash-can',
             onSelect = function()
-                if PlayerCoachID then
-                    if DoesEntityExist(PlayerCoachID) then
-                        SetEntityAsMissionEntity(PlayerCoachID, true, true)
-                        DeleteEntity(PlayerCoachID)
+                if playerCoachId then
+                    if DoesEntityExist(playerCoachId) then
+                        SetEntityAsMissionEntity(playerCoachId, true, true)
+                        DeleteEntity(playerCoachId)
                     end
                 end
             end,
